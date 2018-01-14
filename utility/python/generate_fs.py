@@ -14,7 +14,7 @@ def generate_focal_stack(in_dir, out_dir, calib_mat):
         if not os.path.exists(focal_stack_folder):
             os.makedirs(focal_stack_folder)
 
-        refocus.refocus(f, calib_mat, focal_stack_folder)
+        refocus.refocus(os.path.join(in_dir,f), calib_mat, focal_stack_folder)
 
 if __name__ == "__main__":
     #Add command line parser arguments
