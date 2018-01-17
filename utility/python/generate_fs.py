@@ -3,7 +3,7 @@ import os
 import refocus
 import argparse
 
-def generate_focal_stack(in_dir, out_dir, calib_mat):
+def generate_focal_stack(in_dir, out_dir, calib_mat, stack_size):
     files = [f for f in os.listdir(in_dir) if 
                 os.path.isfile(os.path.join(in_dir, f)) and 
                 os.path.splitext(f)[-1].lower() == ".npy"]
@@ -22,9 +22,10 @@ if __name__ == "__main__":
     parser.add_argument('datasetfolder', help='folder that contains the dataset to be converted to focal stacks')
     parser.add_argument('outdir', help='folder to save the focal stacks to. One folder per lightfield image is created')
     parser.add_argument('--calibmat', default='../../caldata/lfcalib/IntParamLF.mat', help='Path to calibration file (default: ../../caldata/lfcalib/IntParamLF.mat)')
+    parser.add_argument('--stacksize', default=10, type=int, help='Size of generated focal stack (default: 10)')
 
     #Parse arguments
     args = parser.parse_args()
 
     #Generate focal stacks
-    generate_focal_stack(args.datasetfolder, args.outdir, args.calibmat)
+    generate_focal_stack(args.datasetfolder, args.outdir, args.calibmat, args.stacksize)
